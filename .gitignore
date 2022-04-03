@@ -1,3 +1,5 @@
 .idea
 spark-self.iml
 target
+.idea/compiler.xml
+.idea/misc.xml
