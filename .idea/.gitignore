@@ -11,3 +11,7 @@ vcs.xml
 codeStyles
 
 sonarlint
+
+misc.xml
+modules.xml
+spark-self.iml
