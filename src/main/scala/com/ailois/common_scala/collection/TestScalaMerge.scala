@@ -1,7 +1,7 @@
 package com.ailois.common_scala.collection
 
-import scala.collection.JavaConverters._
 import scala.collection.mutable
+import scala.language.postfixOps
 
 object TestScalaMerge {
 
