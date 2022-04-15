@@ -1,6 +1,7 @@
 package com.ailois.jobs
 
 import com.ailois.executor.SparkInit
+import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.{SQLContext, SparkSession}
 
 object SparkTest {
@@ -8,12 +9,14 @@ object SparkTest {
   val spark: SparkSession = SparkInit.sparkInstance()
   val sparkContext: SQLContext = spark.sqlContext
 
-//  import sparkContext.implicits._
+  import sparkContext.implicits._
 
   def main(args: Array[String]): Unit = {
 
-    spark.sql("select * from belard.video_games_sales limit 10").show(false)
-    spark.stop()
+    val mapDF = Map("a" -> 1, "b" -> 2, "c" -> 3).toList.toDF("key", "value")
+    val data = mapDF.select(col("value").cast("int"))
+    data.printSchema()
+    data.show(false)
 
   }
 

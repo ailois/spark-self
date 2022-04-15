@@ -1,7 +1,7 @@
 package com.ailois.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.alibaba.excel.metadata.BaseRowModel;
+import com.alibaba.excel.metadata.BasicParameter;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ExcelPojo extends BaseRowModel {
+public class ExcelPojo extends BasicParameter {
 
     @ExcelProperty(value = "姓名", index = 0)
     private String name;
