@@ -15,6 +15,6 @@ object NoHeaderTest {
       .option("header", value = true)
       .option("inferSchema", value = true)
       .load("file:/D:\\IdeaProjects\\spark-self\\src\\main\\resources\\test_no_header.txt")
-    data.show(false)
+    spark.sessionState.executePlan(data.queryExecution.logical).optimizedPlan.stats.sizeInBytes
   }
 }
