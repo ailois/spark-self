@@ -15,6 +15,7 @@ object SparkTest {
 
     val mapDF = Map("a" -> 1, "b" -> 2, "c" -> 3).toList.toDF("key", "value")
     val data = mapDF.select(col("value").cast("int"))
+    data.filter(x => x.get(0).toString.contains("3")).show(false)
     data.printSchema()
     data.show(false)
 
