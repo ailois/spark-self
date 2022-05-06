@@ -21,7 +21,8 @@ object ScalaGroupByKey {
     val result = originDF.groupByKey(_.getString(0))(Encoders.STRING).mapGroups((key, values) => {
       val maps = mutable.ArrayBuffer[Map[String, Int]]()
       while(values.hasNext){
-        maps.+=(values.next().get(1).asInstanceOf[Map[String, Int]])
+//        maps += values.next().getAs("value").asInstanceOf[Map[String, Int]]
+        maps += values.next().getAs[Map[String, Int]]("value")
       }
       val res = maps.flatMap(_.toMap).foldLeft(mutable.Map[String, Int]())((map, y) => {
         map(y._1) = map.getOrElse(y._1, 0) + y._2

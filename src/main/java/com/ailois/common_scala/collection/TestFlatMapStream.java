@@ -1,4 +1,4 @@
-package com.ailois.test;
+package com.ailois.common_scala.collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,6 @@ public class TestFlatMapStream {
                 .flatMap(Collection::stream)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, Integer::sum));
         logger.info("{}", collect);
-
     }
 
 }

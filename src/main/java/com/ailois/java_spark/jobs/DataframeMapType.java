@@ -60,16 +60,16 @@ public class DataframeMapType {
         List<String> one = new ArrayList<>();
         one.add("id_1");
         one.add("a");
-        one.add("1");
+        one.add("");
         one.add("1");
         Row oneRow = RowFactory.create(one.toArray());
         List<String> two = new ArrayList<>();
         two.add("id_2");
         two.add("b");
-        two.add("1");
+        two.add("");
         two.add("2");
         Row twoRow = new GenericRow(two.toArray());
-        List<Row> rowList = ImmutableList.of(oneRow, twoRow, RowFactory.create("id_3", "c", "4", "3"));
+        List<Row> rowList = ImmutableList.of(oneRow, twoRow, RowFactory.create("id_3", "c", "1", "3"));
         return spark.createDataFrame(rowList, structType);
     }
 
