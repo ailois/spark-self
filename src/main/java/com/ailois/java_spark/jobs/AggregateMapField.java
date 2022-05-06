@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 import static org.apache.spark.sql.types.DataTypes.*;
 
 public class AggregateMapField {
-
     public static void main(String[] args) {
         StructType structType = DataTypes.createStructType(
                 new StructField[]{
@@ -47,7 +46,6 @@ public class AggregateMapField {
                     res.add(JavaConverters.mapAsScalaMap(collect));
                     return new GenericRow(res.toArray());
                 }, RowEncoder.apply(structType));
-
         psv.show(false);
     }
 

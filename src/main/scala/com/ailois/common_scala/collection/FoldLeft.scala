@@ -1,6 +1,6 @@
 package com.ailois.common_scala.collection
 
-object FlodLeft {
+object FoldLeft {
 
   def main(args: Array[String]): Unit = {
     val data = generateData
