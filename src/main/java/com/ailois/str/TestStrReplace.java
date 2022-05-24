@@ -27,6 +27,21 @@ public class TestStrReplace {
         String replaceAll = test2.replaceAll("[\\[\\]]", "");
         logger.info("{}", replaceAll);
 
+        String test = "10fadads10";
+        replaceLast(test);
+
+    }
+
+    public static void replaceLast(String test) {
+        int length = 10;
+        String replaceAllLast = test.replaceAll(length + "$", "");
+        logger.info("test replaceAll last: {}", replaceAllLast);
+        if (!test.endsWith(String.valueOf(length))) {
+            logger.info("----: {}", test);
+        } else {
+            test = test.split(String.valueOf(length))[1];
+        }
+        logger.info("----: {}", test);
     }
 
 }
