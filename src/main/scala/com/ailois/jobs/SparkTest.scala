@@ -1,7 +1,7 @@
 package com.ailois.jobs
 
 import com.ailois.executor.SparkInit
-import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.functions.{col, regexp_replace}
 import org.apache.spark.sql.{SQLContext, SparkSession}
 
 object SparkTest {
@@ -13,12 +13,12 @@ object SparkTest {
 
   def main(args: Array[String]): Unit = {
 
-    val mapDF = Map("a" -> 1, "b" -> 2, "c" -> 3).toList.toDF("key", "value")
-    val data = mapDF.select(col("value").cast("int"))
-    data.filter(x => x.get(0).toString.contains("3")).show(false)
+    val mapDF = Map("a?" -> 1, "b?" -> 2, "c?" -> 3).toList.toDF("key", "value")
+    val data = mapDF.withColumn("key", regexp_replace(col("key"), "\\?", "\\$"))
+      .select(col("key"), col("value").cast("int"))
+    data.filter(x => x.get(1).toString.contains("3")).show(false)
     data.printSchema()
     data.show(false)
-
   }
 
 }
