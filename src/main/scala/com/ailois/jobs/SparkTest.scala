@@ -19,6 +19,12 @@ object SparkTest {
     data.filter(x => x.get(1).toString.contains("3")).show(false)
     data.printSchema()
     data.show(false)
+
+    /*
+    * Try to directly call a fixed number of executors to do some operations
+    **/
+    data.repartition(100).rdd.foreachPartition(_ => println("==**=="))
+
   }
 
 }
