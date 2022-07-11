@@ -14,7 +14,7 @@ object SparkTest {
   def main(args: Array[String]): Unit = {
 
     val mapDF = Map("a?" -> 1, "b?" -> 2, "c?" -> 3).toList.toDF("key", "value")
-    val data = mapDF.withColumn("key", regexp_replace(col("key"), "\\?", "\\$"))
+    var data = mapDF.withColumn("key", regexp_replace(col("key"), "\\?", "\\$"))
       .select(col("key"), col("value").cast("int"))
     data.filter(x => x.get(1).toString.contains("3")).show(false)
     data.printSchema()
@@ -24,6 +24,12 @@ object SparkTest {
     * Try to directly call a fixed number of executors to do some operations
     **/
     data.repartition(100).rdd.foreachPartition(_ => println("==**=="))
+    println(data.rdd.countApproxDistinct(0.5))
+
+    data = data.cache()
+    data.count()
+    println(data.queryExecution.optimizedPlan.stats.rowCount.get)
+    println(data.queryExecution.optimizedPlan.stats.sizeInBytes)
 
   }
 
