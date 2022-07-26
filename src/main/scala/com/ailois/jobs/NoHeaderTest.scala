@@ -13,6 +13,7 @@ object NoHeaderTest {
     // load path must contains file if hdfs-site.xml in the same folder
     val data = spark.read.format("csv")
       .option("header", value = true)
+      .option("delimiter", "$")
       .option("inferSchema", value = true)
       .load("file:/D:\\IdeaProjects\\spark-self\\src\\main\\resources\\test_no_header.txt")
     val size = data.queryExecution.optimizedPlan.stats.sizeInBytes
