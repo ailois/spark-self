@@ -13,6 +13,22 @@ public class RegularTest {
     public static void main(String[] args) {
         String s = testReg("2020-02-22 00:00:00");
         logger.info("{}", s);
+        String regex1 = "FR|RB|Residual";
+        String regex2 = ">=|<=|>|<|=|is|more than|!=";
+        String regex3 = "\\d+.\\d+|\\d+";
+        testReg2("FR composite > 0.01", regex1);
+        testReg2("RB composite >= 0.01", regex2);
+        testReg2("RB composite > 0.02", regex3);
+    }
+
+    private static void testReg2(String text, String regex) {
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(text);
+        String test = null;
+        if (matcher.find()) {
+            test = matcher.group(0);
+        }
+        logger.info("matcher {}", test);
     }
 
     public static String testReg(String text) { //NOSONAR
