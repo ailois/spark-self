@@ -19,6 +19,7 @@ public class RegularTest {
         testReg2("FR composite > 0.01", regex1);
         testReg2("RB composite >= 0.01", regex2);
         testReg2("RB composite > 0.02", regex3);
+        testReg2("col(test:11) is null", "col\\(\\w+\\)|col\\(\\w+\\:\\w+\\)");
     }
 
     private static void testReg2(String text, String regex) {
